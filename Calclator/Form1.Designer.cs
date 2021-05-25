@@ -49,10 +49,17 @@
             this.input2.Name = "input2";
             this.input2.Size = new System.Drawing.Size(100, 19);
             this.input2.TabIndex = 1;
+            this.input2.TextChanged += new System.EventHandler(this.input2_TextChanged);
             // 
             // inputSynbol
             // 
             this.inputSynbol.FormattingEnabled = true;
+            this.inputSynbol.Items.AddRange(new object[] {
+            "+",
+            "-",
+            "*",
+            "/",
+            "%"});
             this.inputSynbol.Location = new System.Drawing.Point(258, 168);
             this.inputSynbol.Name = "inputSynbol";
             this.inputSynbol.Size = new System.Drawing.Size(27, 20);
