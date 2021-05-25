@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace Calclator
 {
-    public partial class Form1 : Form
+    public partial class Calclator : Form
     {
-        public Form1()
+        public Calclator()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
