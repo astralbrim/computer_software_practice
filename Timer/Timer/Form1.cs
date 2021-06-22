@@ -12,32 +12,56 @@ namespace Timer
 {
     public partial class Form1 : Form
     {
-        int endTime;
+        private int endTime;
+        private bool isTimerStart;
         public Form1()
         {
             InitializeComponent();
         }
+        private void Reset_TextBox(TextBox textBox)
+        {
+            textBox.Text = "";
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(int.TryParse(textBox1.Text, out endTime))
+            if (!isTimerStart)
             {
-                timer1.Start();
+                bool isNumber = int.TryParse(textBox1.Text, out endTime);
+                if (isNumber) endTime *= 10;
+                if (!isNumber)
+                {
+                    Reset_TextBox(textBox1);
+                    MessageBox.Show("数字を入力してください");
+                }
+                else
+                {
+                    if(!(endTime <= 600 && endTime >= 100))
+                    {
+                        endTime = 100;
+                        textBox1.Text = "10";
+                    }
+                    Reset_TextBox(textBox2);
+                    timer1.Start();
+                    isTimerStart = true;
+                }
             }else
             {
-                textBox1.Text = "";
-                MessageBox.Show("数字を入力してください");
+                timer1.Stop();
+                isTimerStart = false;
+                textBox2.Text = (endTime / 10).ToString();
             }
             
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox2.Text = endTime.ToString();
-            if (endTime-- == 0)
+
+            if (endTime-- == -100)
             {
                 timer1.Stop();
-                MessageBox.Show("時間になりました。");
+                isTimerStart = false;
+                MessageBox.Show("指定時間を大幅に超過しました");
             }
            
         }
